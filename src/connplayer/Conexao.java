@@ -13,7 +13,7 @@ public class Conexao {
    Connection conn = null;
    public static Connection connect() {
         // SQLite atributo que recebe o caminho do banco
-        String url = "jdbc:sqlite:C:\\Users\\Guilherme\\Documents\\NetBeansProjects\\ConnPlayer\\db\\connplayer.sqlite";
+        String url = "jdbc:sqlite:C:\\Users\\Orion\\Documents\\GitHub\\ConnPlayer\\db\\connplayer.sqlite";
         Connection conn = null;
         try {
             //DriveManager chama o getConnection() com o endereço e o prefixo do tipo do banco de dados
