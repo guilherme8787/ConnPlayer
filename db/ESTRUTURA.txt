@@ -8,10 +8,10 @@ CREATE TABLE MUSICA (
     ALBUM   NVARCHAR (40) 
 );
 
-INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES ("Diario de um detendo", 1997, "Spotify", "Racionais MCs", "TUTS", "Sobrevivendo no inferno");
-INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES ("Capitulo 4, Versiculo 3", 1997, "Spotify", "Racionais MCs", "TUTS", "Sobrevivendo no inferno");
-INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES ("To ouvindo alguem me chamar", 1997, "Spotify", "Racionais MCs", "TUTS", "Sobrevivendo no inferno");
-INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES ("Qual mentira vou acreditar", 1997, "Spotify", "Racionais MCs", "TUTS", "Sobrevivendo no inferno");
+INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES ("Diario de um detendo", 1997, "Spotify", "Racionais MCs", "Rap", "Sobrevivendo no inferno");
+INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES ("Capitulo 4, Versiculo 3", 1997, "Spotify", "Racionais MCs", "Rap", "Sobrevivendo no inferno");
+INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES ("To ouvindo alguem me chamar", 1997, "Spotify", "Racionais MCs", "Rap", "Sobrevivendo no inferno");
+INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES ("Qual mentira vou acreditar", 1997, "Spotify", "Racionais MCs", "Rap", "Sobrevivendo no inferno");
 
 --DROP TABLE MUSICA
 

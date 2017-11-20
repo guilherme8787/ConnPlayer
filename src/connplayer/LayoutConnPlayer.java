@@ -156,6 +156,11 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         salvarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         salvarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/salvar.png"))); // NOI18N
+        salvarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salvarButtonMouseClicked(evt);
+            }
+        });
         salvarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salvarButtonActionPerformed(evt);
@@ -371,6 +376,16 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Google Music", "Spotify", "HD 5.1", "CD", "DVD", "Itunes", "Vinil", "Fita K7" }));
         albumTextField.setText("");
     }//GEN-LAST:event_novoButtonMouseClicked
+
+    private void salvarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salvarButtonMouseClicked
+        String nome = nomeTextField.getText(),
+               midia = String.valueOf(midiaComboBox.getSelectedItem()),
+               artista = artistaTextField.getText(),
+               genero = String.valueOf(generoComboBox.getSelectedItem()),
+               album = albumTextField.getText();
+        int ano = Integer.parseInt(anoTextField.getText());
+        Salvar add = new Salvar(nome, ano, midia, artista, genero, album);
+    }//GEN-LAST:event_salvarButtonMouseClicked
 
     /**
      * @param args the command line arguments

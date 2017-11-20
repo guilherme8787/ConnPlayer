@@ -11,12 +11,22 @@ import java.sql.*;
  * @author Orion
  */
 public class Salvar {
-    public Salvar(String nmmusica, int ano, String midia, String nmartista, String genero, String album){
-        try(Connection conn = Conexao.connect()){
-            
+    public Salvar(String nome, int ano, String midia, String artista, String genero, String album){
+        String sql = "INSERT INTO MUSICA (NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM) VALUES "
+                + "(?, ?, ?, ?, ?, ?)";
+        try(Connection conn = Conexao.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, nome);
+            pstmt.setInt(2, ano);
+            pstmt.setString(3, midia);
+            pstmt.setString(4, artista);
+            pstmt.setString(5, genero);
+            pstmt.setString(6, album);
+            pstmt.executeUpdate();
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch(SQLException e){
+            System.out.println(e.getMessage());
         }
+        //System.out.println("GG wp");
     }
 }
