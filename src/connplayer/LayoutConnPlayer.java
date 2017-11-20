@@ -449,7 +449,9 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
             int serio = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir a seguinte musica: " + nome);
             if(serio == JOptionPane.YES_OPTION)
                 pstmt.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Deletado");
+                    JOptionPane.showMessageDialog(null, "Deletado");
+                    this.dispose();
+                    new LayoutConnPlayer().setVisible(true);
             if(serio == JOptionPane.NO_OPTION)
                 JOptionPane.showMessageDialog(null, "Operação cancelada");
         }
