@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package connplayer;
-import java.sql.Connection;
 import java.sql.*;
 import javax.swing.*;
 /**
@@ -142,6 +141,11 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         ultimaButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         ultimaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/ultima.png"))); // NOI18N
+        ultimaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ultimaButtonMouseClicked(evt);
+            }
+        });
 
         deletarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         deletarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/deletar.png"))); // NOI18N
@@ -326,7 +330,20 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_primeiraButtonInputMethodTextChanged
 
     private void primeiraButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_primeiraButtonMouseClicked
-        //botão de primeira musica
+        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA ORDER BY ID ASC LIMIT 1";
+        try (Connection conn = Conexao.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+                artistaTextField.setText(rs.getString("ARTISTA"));
+                nomeTextField.setText(rs.getString("NOME"));
+                generoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("genero") }));
+                midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
+                albumTextField.setText(rs.getString("album"));
+                anoTextField.setText(String.valueOf(rs.getInt("ano")));           
+            }
+            catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
     }//GEN-LAST:event_primeiraButtonMouseClicked
 
     private void primeiraButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_primeiraButtonMouseMoved
@@ -395,6 +412,23 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         }
         Salvar add = new Salvar(nome, ano, midia, artista, genero, album);
     }//GEN-LAST:event_salvarButtonMouseClicked
+
+    private void ultimaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ultimaButtonMouseClicked
+        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA ORDER BY ID DESC LIMIT 1";
+        try (Connection conn = Conexao.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+                artistaTextField.setText(rs.getString("ARTISTA"));
+                nomeTextField.setText(rs.getString("NOME"));
+                generoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("genero") }));
+                midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
+                albumTextField.setText(rs.getString("album"));
+                anoTextField.setText(String.valueOf(rs.getInt("ano")));           
+            }
+            catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+    }//GEN-LAST:event_ultimaButtonMouseClicked
 
     /**
      * @param args the command line arguments
