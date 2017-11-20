@@ -5,6 +5,7 @@
  */
 package connplayer;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,8 +26,7 @@ public class Salvar {
             pstmt.executeUpdate();
         }
         catch(SQLException e){
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        //System.out.println("GG wp");
     }
 }

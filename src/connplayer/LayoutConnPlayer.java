@@ -378,12 +378,26 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_novoButtonMouseClicked
 
     private void salvarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salvarButtonMouseClicked
-        String nome = nomeTextField.getText(),
-               midia = String.valueOf(midiaComboBox.getSelectedItem()),
-               artista = artistaTextField.getText(),
-               genero = String.valueOf(generoComboBox.getSelectedItem()),
-               album = albumTextField.getText();
-        int ano = Integer.parseInt(anoTextField.getText());
+        String nome = null, midia  = null, artista = null, genero = null, album = null;
+        int ano = 0;
+        if(!midiaComboBox.getSelectedItem().equals("Selecione") &&  !generoComboBox.getSelectedItem().equals("Selecione")){
+            nome = nomeTextField.getText();
+            System.out.println(nome);
+            midia = String.valueOf(midiaComboBox.getSelectedItem());
+            artista = artistaTextField.getText();
+            genero = String.valueOf(generoComboBox.getSelectedItem());
+            album = albumTextField.getText();
+            ano = Integer.parseInt(anoTextField.getText());
+        }
+        else if(midiaComboBox.getSelectedItem().equals("Selecione") && generoComboBox.getSelectedItem().equals("Selecione")){
+            JOptionPane.showMessageDialog(null, "Entre com o genero e a midía!");
+        }
+        else if(midiaComboBox.getSelectedItem().equals("Selecione")){
+            JOptionPane.showMessageDialog(null, "Entre com a midía!");
+        }
+        else if(generoComboBox.getSelectedItem().equals("Selecione")){
+            JOptionPane.showMessageDialog(null, "Entre com o genero!");
+        }
         Salvar add = new Salvar(nome, ano, midia, artista, genero, album);
     }//GEN-LAST:event_salvarButtonMouseClicked
 
