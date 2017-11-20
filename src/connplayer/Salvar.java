@@ -24,6 +24,7 @@ public class Salvar {
             pstmt.setString(5, genero);
             pstmt.setString(6, album);
             pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Inserido com sucesso");
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, e.getMessage());

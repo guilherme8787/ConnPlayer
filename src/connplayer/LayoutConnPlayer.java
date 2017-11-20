@@ -326,22 +326,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_primeiraButtonInputMethodTextChanged
 
     private void primeiraButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_primeiraButtonMouseClicked
-        if(!midiaComboBox.getSelectedItem().equals("Selecione") &&  !generoComboBox.getSelectedItem().equals("Selecione")){
-            artistaTextField.setText("Os Avassaladores");
-            nomeTextField.setText("Sou foda");
-            anoTextField.setText("2009");
-            albumTextField.setText("Sou foda");
-            System.out.println(String.valueOf(midiaComboBox.getSelectedItem()));
-        }
-        else if(midiaComboBox.getSelectedItem().equals("Selecione") && generoComboBox.getSelectedItem().equals("Selecione")){
-            JOptionPane.showMessageDialog(null, "Entre com o genero e a midía!");
-        }
-        else if(midiaComboBox.getSelectedItem().equals("Selecione")){
-            JOptionPane.showMessageDialog(null, "Entre com a midía!");
-        }
-        else if(generoComboBox.getSelectedItem().equals("Selecione")){
-            JOptionPane.showMessageDialog(null, "Entre com o genero!");
-        }
+        //botão de primeira musica
     }//GEN-LAST:event_primeiraButtonMouseClicked
 
     private void primeiraButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_primeiraButtonMouseMoved
@@ -381,13 +366,23 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         String nome = null, midia  = null, artista = null, genero = null, album = null;
         int ano = 0;
         if(!midiaComboBox.getSelectedItem().equals("Selecione") &&  !generoComboBox.getSelectedItem().equals("Selecione")){
-            nome = nomeTextField.getText();
-            System.out.println(nome);
-            midia = String.valueOf(midiaComboBox.getSelectedItem());
-            artista = artistaTextField.getText();
-            genero = String.valueOf(generoComboBox.getSelectedItem());
-            album = albumTextField.getText();
-            ano = Integer.parseInt(anoTextField.getText());
+            if(!nomeTextField.getText().equals("") &&  !artistaTextField.getText().equals("")){
+                nome = nomeTextField.getText();
+                artista = artistaTextField.getText();
+                midia = String.valueOf(midiaComboBox.getSelectedItem());
+                genero = String.valueOf(generoComboBox.getSelectedItem());
+                album = albumTextField.getText();
+                ano = Integer.parseInt(anoTextField.getText());
+            }
+            else if(nomeTextField.getText().equals("") &&  artistaTextField.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Falta o nome da musica e do artista");
+            }
+            else if(nomeTextField.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Falta o nome da musica");
+            }
+            else if(artistaTextField.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Falta o nome do artista");
+            }
         }
         else if(midiaComboBox.getSelectedItem().equals("Selecione") && generoComboBox.getSelectedItem().equals("Selecione")){
             JOptionPane.showMessageDialog(null, "Entre com o genero e a midía!");
