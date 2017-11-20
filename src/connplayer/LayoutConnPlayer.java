@@ -149,6 +149,11 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         deletarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         deletarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/deletar.png"))); // NOI18N
+        deletarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletarButtonMouseClicked(evt);
+            }
+        });
 
         editarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         editarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/editar.png"))); // NOI18N
@@ -429,6 +434,29 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
             System.out.println(e.getMessage());
             }
     }//GEN-LAST:event_ultimaButtonMouseClicked
+
+    private void deletarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarButtonMouseClicked
+        String nome = nomeTextField.getText();
+        int id = 0;
+        String pegaoid = "SELECT ID, upper(NOME)as nome FROM MUSICA WHERE NOME = '"+ nome +"'";
+        String deleta = "DELETE FROM MUSICA WHERE NOME = '"+nome+"'";
+        try(Connection conn = Conexao.connect();
+            PreparedStatement pstmt = conn.prepareStatement(deleta);
+            Statement stmt  = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(pegaoid)){
+            id = rs.getInt("ID");
+            nome = rs.getString("NOME");
+            int serio = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir a seguinte musica: " + nome);
+            if(serio == JOptionPane.YES_OPTION)
+                pstmt.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Deletado");
+            if(serio == JOptionPane.NO_OPTION)
+                JOptionPane.showMessageDialog(null, "Operação cancelada");
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_deletarButtonMouseClicked
 
     /**
      * @param args the command line arguments

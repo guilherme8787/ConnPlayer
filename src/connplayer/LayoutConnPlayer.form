@@ -340,6 +340,9 @@
               <Image iconType="3" name="/connplayer/deletar.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deletarButtonMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="editarButton">
           <Properties>
