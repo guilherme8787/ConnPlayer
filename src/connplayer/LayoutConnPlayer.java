@@ -11,7 +11,8 @@ import javax.swing.*;
  * @author Firmas
  */
 public class LayoutConnPlayer extends javax.swing.JFrame {
-
+    
+    private int id;
     /**
      * Creates new form LayoutConnPlayer
      */
@@ -67,6 +68,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         setResizable(false);
 
         connPlayerPanel.setBackground(new java.awt.Color(51, 51, 51));
+        connPlayerPanel.setPreferredSize(new java.awt.Dimension(624, 198));
 
         nomeLabel.setBackground(new java.awt.Color(255, 255, 255));
         nomeLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -111,6 +113,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         primeiraButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         primeiraButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/primeira.png"))); // NOI18N
+        primeiraButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         primeiraButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 primeiraButtonMouseMoved(evt);
@@ -136,12 +139,25 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         anteriorButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         anteriorButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/anterior.png"))); // NOI18N
+        anteriorButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        anteriorButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anteriorButtonMouseClicked(evt);
+            }
+        });
 
         proximaButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         proximaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/proxima.png"))); // NOI18N
+        proximaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        proximaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                proximaButtonMouseClicked(evt);
+            }
+        });
 
         ultimaButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         ultimaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/ultima.png"))); // NOI18N
+        ultimaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ultimaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ultimaButtonMouseClicked(evt);
@@ -150,6 +166,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         deletarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         deletarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/deletar.png"))); // NOI18N
+        deletarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deletarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deletarButtonMouseClicked(evt);
@@ -158,6 +175,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         editarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         editarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/editar.png"))); // NOI18N
+        editarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarButtonActionPerformed(evt);
@@ -166,6 +184,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         salvarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         salvarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/salvar.png"))); // NOI18N
+        salvarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         salvarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 salvarButtonMouseClicked(evt);
@@ -179,6 +198,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         novoButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         novoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/add.png"))); // NOI18N
+        novoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         novoButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 novoButtonMouseClicked(evt);
@@ -192,6 +212,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
         buscarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         buscarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/buscar.png"))); // NOI18N
+        buscarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buscarButtonMouseClicked(evt);
@@ -260,7 +281,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
                         .addComponent(albumLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(albumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 56, Short.MAX_VALUE))
         );
         connPlayerPanelLayout.setVerticalGroup(
             connPlayerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,11 +322,11 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(connPlayerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(connPlayerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(connPlayerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(connPlayerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -340,6 +361,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)){
+                this.id = rs.getInt("ID");
                 artistaTextField.setText(rs.getString("ARTISTA"));
                 nomeTextField.setText(rs.getString("NOME"));
                 generoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("genero") }));
@@ -360,6 +382,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         Buscar x = new Buscar();
         x.pesquisar(String.valueOf(nomeTextField.getText()));
         //System.out.println(String.valueOf(nomeTextField.getText()));
+        this.id = x.getId();
         artistaTextField.setText(x.getArtista());
         nomeTextField.setText(x.getMusica());
         anoTextField.setText(String.valueOf(x.getAno()));
@@ -424,6 +447,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)){
+                this.id = rs.getInt("ID");
                 artistaTextField.setText(rs.getString("ARTISTA"));
                 nomeTextField.setText(rs.getString("NOME"));
                 generoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("genero") }));
@@ -460,6 +484,44 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_deletarButtonMouseClicked
+
+    private void anteriorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorButtonMouseClicked
+        this.id -= 1;
+        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
+        try (Connection conn = Conexao.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+                this.id = rs.getInt("ID");
+                artistaTextField.setText(rs.getString("ARTISTA"));
+                nomeTextField.setText(rs.getString("NOME"));
+                generoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("genero") }));
+                midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
+                albumTextField.setText(rs.getString("album"));
+                anoTextField.setText(String.valueOf(rs.getInt("ano")));           
+            }
+            catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+    }//GEN-LAST:event_anteriorButtonMouseClicked
+
+    private void proximaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximaButtonMouseClicked
+        this.id += 1;
+        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
+        try (Connection conn = Conexao.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+                this.id = rs.getInt("ID");
+                artistaTextField.setText(rs.getString("ARTISTA"));
+                nomeTextField.setText(rs.getString("NOME"));
+                generoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("genero") }));
+                midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
+                albumTextField.setText(rs.getString("album"));
+                anoTextField.setText(String.valueOf(rs.getInt("ano")));           
+            }
+            catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+    }//GEN-LAST:event_proximaButtonMouseClicked
 
     /**
      * @param args the command line arguments

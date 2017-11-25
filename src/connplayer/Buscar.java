@@ -12,10 +12,14 @@ import java.util.ArrayList;
  */
 public class Buscar {
     private String nomemusica, artista, genero, nomealbum, midia;
-    private int ano;
+    private int ano, id;
+
+    public int getId() {
+        return id;
+    }
     public void pesquisar(String busca){
         busca = busca.toUpperCase();
-        String sql = "SELECT NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM"
+        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM"
                 + "  from MUSICA "
                 + "  where upper(NOME) like '%" + busca +"%' ";
         try (Connection conn = Conexao.connect();
@@ -24,6 +28,7 @@ public class Buscar {
             
             // loop through the result set
             while (rs.next()) {
+                id = rs.getInt("ID");
                 artista = rs.getString("ARTISTA");
                 nomemusica = rs.getString("NOME");
                 genero = rs.getString("genero");
