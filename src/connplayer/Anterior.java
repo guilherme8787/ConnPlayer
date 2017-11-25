@@ -31,6 +31,14 @@ public class Anterior {
         return midia;
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
     public String getAlbum() {
         return album;
     }
@@ -44,20 +52,26 @@ public class Anterior {
     }
 
     public Anterior(int id) {
-        this.id = id;
-        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + id + "";
-        try (Connection conn = Conexao.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)){
-                artista = rs.getString("ARTISTA");
-                nome = rs.getString("NOME");
-                 rs.getString("genero");
-                midia = rs.getString("midia");
-                album = rs.getString("album");
-                ano = String.valueOf(rs.getInt("ano"));           
-            }
-            catch (SQLException e) {
-            System.out.println(e.getMessage());
-            }
+        id -= 1;
+        if(id < 0){
+            System.out.println("Fudeu");
+        }
+        else{
+            String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + id + "";
+            try (Connection conn = Conexao.connect();
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sql)){
+                    this.id = rs.getInt("ID");
+                    artista = rs.getString("ARTISTA");
+                    nome = rs.getString("NOME");
+                    genero = rs.getString("genero");
+                    album = rs.getString("album");
+                    midia = rs.getString("midia");
+                    ano = rs.getString("ano");
+                }
+                catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+        }
     }
 }
