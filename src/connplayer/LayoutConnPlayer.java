@@ -487,6 +487,12 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
     private void anteriorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorButtonMouseClicked
         this.id -= 1;
+        if (this.id <= 0) {
+            anteriorButton.disable();
+            this.id +=1;
+            return;
+        }
+        
         String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
@@ -503,8 +509,10 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
             System.out.println(e.getMessage());
             }
     }//GEN-LAST:event_anteriorButtonMouseClicked
-
+    
     private void proximaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximaButtonMouseClicked
+        anteriorButton.enable();
+        
         this.id += 1;
         String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
         try (Connection conn = Conexao.connect();
