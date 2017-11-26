@@ -361,8 +361,8 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
     private void primeiraButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_primeiraButtonMouseClicked
         String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA ORDER BY ID ASC LIMIT 1";
         try (Connection conn = Conexao.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)){
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)){
                 this.id = rs.getInt("ID");
                 artistaTextField.setText(rs.getString("ARTISTA"));
                 nomeTextField.setText(rs.getString("NOME"));
@@ -370,10 +370,10 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
                 midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
                 albumTextField.setText(rs.getString("album"));
                 anoTextField.setText(String.valueOf(rs.getInt("ano")));           
-            }
-            catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println(e.getMessage());
-            }
+        }
     }//GEN-LAST:event_primeiraButtonMouseClicked
 
     private void primeiraButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_primeiraButtonMouseMoved
@@ -507,17 +507,16 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
                 midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
                 albumTextField.setText(rs.getString("album"));
                 anoTextField.setText(String.valueOf(rs.getInt("ano")));           
-                } 
+            }
             else anteriorButtonMouseClicked(evt);
         }
-            catch (SQLException e) {
+        catch (SQLException e) {
             System.out.println(e.getMessage());
-            }
+        }
     }//GEN-LAST:event_anteriorButtonMouseClicked
     
     private void proximaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximaButtonMouseClicked
         this.id += 1;
-        
         String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
@@ -530,12 +529,14 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
                 midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
                 albumTextField.setText(rs.getString("album"));
                 anoTextField.setText(String.valueOf(rs.getInt("ano")));           
-            } else proximaButtonMouseClicked(evt);
-        }
-        
-            catch (SQLException e) {
-            System.out.println(e.getMessage());
+            } else if(!rs.next()){
+                this.id -= 1;
+                JOptionPane.showMessageDialog(null, "Não há mais músicas");
             }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_proximaButtonMouseClicked
 
     /**
