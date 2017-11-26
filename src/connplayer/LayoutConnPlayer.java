@@ -178,6 +178,11 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         editarButton.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow"));
         editarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/connplayer/editar.png"))); // NOI18N
         editarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editarButtonMouseClicked(evt);
+            }
+        });
         editarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarButtonActionPerformed(evt);
@@ -538,6 +543,40 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_proximaButtonMouseClicked
+
+    private void editarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarButtonMouseClicked
+        String nome = null, midia  = null, artista = null, genero = null, album = null;
+        int ano = 0;
+        if(!midiaComboBox.getSelectedItem().equals("Selecione") &&  !generoComboBox.getSelectedItem().equals("Selecione")){
+            if(!nomeTextField.getText().equals("") &&  !artistaTextField.getText().equals("")){
+                nome = nomeTextField.getText();
+                artista = artistaTextField.getText();
+                midia = String.valueOf(midiaComboBox.getSelectedItem());
+                genero = String.valueOf(generoComboBox.getSelectedItem());
+                album = albumTextField.getText();
+                ano = Integer.parseInt(anoTextField.getText());
+            }
+            else if(nomeTextField.getText().equals("") &&  artistaTextField.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Falta o nome da musica e do artista");
+            }
+            else if(nomeTextField.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Falta o nome da musica");
+            }
+            else if(artistaTextField.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Falta o nome do artista");
+            }
+        }
+        else if(midiaComboBox.getSelectedItem().equals("Selecione") && generoComboBox.getSelectedItem().equals("Selecione")){
+            JOptionPane.showMessageDialog(null, "Entre com o genero e a midía!");
+        }
+        else if(midiaComboBox.getSelectedItem().equals("Selecione")){
+            JOptionPane.showMessageDialog(null, "Entre com a midía!");
+        }
+        else if(generoComboBox.getSelectedItem().equals("Selecione")){
+            JOptionPane.showMessageDialog(null, "Entre com o genero!");
+        }
+        Editar edit = new Editar(nome, ano, midia, artista, genero, album, id);
+    }//GEN-LAST:event_editarButtonMouseClicked
 
     /**
      * @param args the command line arguments
