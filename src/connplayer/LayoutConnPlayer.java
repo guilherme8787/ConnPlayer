@@ -5,6 +5,8 @@
  */
 package connplayer;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /**
  *
@@ -487,16 +489,17 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
 
     private void anteriorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorButtonMouseClicked
         this.id -= 1;
-        if (this.id <= 0) {
+        if(id <= 0 ){
             anteriorButton.disable();
-            this.id +=1;
+            id += 1;
+            JOptionPane.showMessageDialog(null, "Não há músicas anteriores");
             return;
         }
-        
         String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)){
+            if (rs.next()){
                 this.id = rs.getInt("ID");
                 artistaTextField.setText(rs.getString("ARTISTA"));
                 nomeTextField.setText(rs.getString("NOME"));
@@ -504,20 +507,22 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
                 midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
                 albumTextField.setText(rs.getString("album"));
                 anoTextField.setText(String.valueOf(rs.getInt("ano")));           
-            }
+                } 
+            else anteriorButtonMouseClicked(evt);
+        }
             catch (SQLException e) {
             System.out.println(e.getMessage());
             }
     }//GEN-LAST:event_anteriorButtonMouseClicked
     
     private void proximaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximaButtonMouseClicked
-        anteriorButton.enable();
-        
         this.id += 1;
+        
         String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)){
+            if (rs.next()){
                 this.id = rs.getInt("ID");
                 artistaTextField.setText(rs.getString("ARTISTA"));
                 nomeTextField.setText(rs.getString("NOME"));
@@ -525,7 +530,9 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
                 midiaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { rs.getString("midia") }));
                 albumTextField.setText(rs.getString("album"));
                 anoTextField.setText(String.valueOf(rs.getInt("ano")));           
-            }
+            } else proximaButtonMouseClicked(evt);
+        }
+        
             catch (SQLException e) {
             System.out.println(e.getMessage());
             }
