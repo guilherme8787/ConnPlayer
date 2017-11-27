@@ -379,6 +379,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        temp = 0;
     }//GEN-LAST:event_primeiraButtonMouseClicked
 
     private void primeiraButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_primeiraButtonMouseMoved
@@ -465,6 +466,10 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
             catch (SQLException e) {
             System.out.println(e.getMessage());
             }
+        Temp x = new Temp();
+        x.Count();
+        temp = x.tam-1;
+        //System.out.println(x.tam);
     }//GEN-LAST:event_ultimaButtonMouseClicked
 
     private void deletarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarButtonMouseClicked
@@ -493,15 +498,16 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_deletarButtonMouseClicked
 
     private void anteriorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorButtonMouseClicked
-        temp -= 1;
         this.id -= 1;
-        if(id <= 0 ){
+        temp--;
+        Temp x = new Temp();
+        if(temp < 0 ){
             anteriorButton.disable();
-            id += 1;
+            temp += 1;
             JOptionPane.showMessageDialog(null, "Não há músicas anteriores");
             return;
         }
-        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
+        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + x.id[temp] + "";
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)){
@@ -523,7 +529,15 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
     
     private void proximaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximaButtonMouseClicked
         Temp x = new Temp();
+        x.Count();
+        temp++;
         this.id += 1;
+        if(temp > x.tam ){
+            proximaButton.disable();
+            temp -= 1;
+            JOptionPane.showMessageDialog(null, "Não há mais músicas");
+            return;
+        }
         String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + x.id[temp] + "";
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
@@ -537,14 +551,13 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
                 albumTextField.setText(rs.getString("album"));
                 anoTextField.setText(String.valueOf(rs.getInt("ano")));           
             } else if(!rs.next()){
-                //this.id -= 1;
+                temp--;
                 JOptionPane.showMessageDialog(null, "Não há mais músicas");
             }
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        temp++;
     }//GEN-LAST:event_proximaButtonMouseClicked
 
     private void editarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarButtonMouseClicked

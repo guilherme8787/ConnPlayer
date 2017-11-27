@@ -17,7 +17,9 @@ import javax.swing.JOptionPane;
  * @author Orion
  */
 public class Temp {
-    public int[] id = new int[100];
+    public int tam;
+    public int[] id = new int[999];
+    
     int i = 0;
         public Temp(){
         String sql = "SELECT ID FROM MUSICA";
@@ -39,4 +41,19 @@ public class Temp {
     public int[] getId() {
         return id;
     }
+    
+    public void Count(){
+        String sql = "SELECT count(ID) as ct FROM MUSICA";
+            try (Connection conn = Conexao.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)){
+                if(rs.next()){
+                  tam = rs.getInt("ct");
+                } 
+            }
+            catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println(tam);
+        }
 }
