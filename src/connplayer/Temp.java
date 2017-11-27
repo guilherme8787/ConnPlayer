@@ -26,7 +26,7 @@ public class Temp {
             ResultSet rs = stmt.executeQuery(sql)){
                 while(rs.next()){
                     id[i] = rs.getInt("ID");
-                    System.out.println(id[i]);
+                    //System.out.println(id[i]);
                     i += 1;
                     
                 } 

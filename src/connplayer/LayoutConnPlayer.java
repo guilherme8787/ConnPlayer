@@ -493,6 +493,7 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_deletarButtonMouseClicked
 
     private void anteriorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorButtonMouseClicked
+        temp -= 1;
         this.id -= 1;
         if(id <= 0 ){
             anteriorButton.disable();
