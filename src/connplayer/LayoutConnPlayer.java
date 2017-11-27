@@ -14,7 +14,7 @@ import javax.swing.*;
  */
 public class LayoutConnPlayer extends javax.swing.JFrame {
     
-    private int id;
+    private int id, temp = 0;
     /**
      * Creates new form LayoutConnPlayer
      */
@@ -521,8 +521,9 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_anteriorButtonMouseClicked
     
     private void proximaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proximaButtonMouseClicked
+        Temp x = new Temp();
         this.id += 1;
-        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + this.id + "";
+        String sql = "SELECT ID, NOME, ANO, MIDIA, ARTISTA, GENERO, ALBUM FROM MUSICA WHERE ID = " + x.id[temp] + "";
         try (Connection conn = Conexao.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)){
@@ -535,13 +536,14 @@ public class LayoutConnPlayer extends javax.swing.JFrame {
                 albumTextField.setText(rs.getString("album"));
                 anoTextField.setText(String.valueOf(rs.getInt("ano")));           
             } else if(!rs.next()){
-                this.id -= 1;
+                //this.id -= 1;
                 JOptionPane.showMessageDialog(null, "Não há mais músicas");
             }
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        temp++;
     }//GEN-LAST:event_proximaButtonMouseClicked
 
     private void editarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarButtonMouseClicked

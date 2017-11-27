@@ -24,7 +24,7 @@ public class Editar {
                 + ", MIDIA = ?"
                 + ", ARTISTA = ?" 
                 + ", GENERO = ?" 
-                + ", ALBUM = ? where ID == ?";
+                + ", ALBUM = ? where ID == "+ id +"";
         try(Connection conn = Conexao.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setString(1, nome);
